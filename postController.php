@@ -46,3 +46,24 @@ if(isset($_POST['view'])){
     }
 
 }
+if(isset($_POST['request'])){
+    $boardID=$_POST['boardID'];
+    if(isset($_SESSION['data'])){
+        $data=unserialize($_SESSION['data']);
+        for($i=0;$i<sizeof($data);$i++){
+            if($data[$i]->getId()==$boardID){
+
+                $userID=$data[$i]->getCreatedName();
+                $groupname=$data[$i]->getTitle();
+                $data[$i]->userIncrement();
+                $result=$collection->sendRequestForJoin($boardID,$groupname,'user',$userID);
+                $_SESSION['data']=serialize($data);
+
+                echo $result;
+                break;
+            }
+        }
+
+    }
+
+}

@@ -84,6 +84,9 @@ class Category
         $this->viewCount+=1;
 
     }
+    public function userIncrement(){
+        $this->usersCount+=1;
+    }
     public function jsonSerialize () { return $this->toArray(); }
 }
 

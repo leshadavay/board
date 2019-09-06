@@ -67,7 +67,21 @@ class CategoryCollection
         return $result;
 
     }
+    public function sendRequestForJoin($boardID,$groupname,$from,$to){
 
+
+        $query="INSERT INTO REQUESTS values('$boardID','$groupname','$from','$to')";
+        $result1=$this->dbInstance->getQueryResult($query);
+
+
+        $query="UPDATE MATCHBOARD SET currentusers=currentusers+1 WHERE id='$boardID'";
+        $result2=$this->dbInstance->getQueryResult($query);
+
+        if($result1&&$result2)
+            return true;
+        else return false;
+
+    }
 
 
     public function getCategorySize()

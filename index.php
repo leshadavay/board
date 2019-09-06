@@ -2,7 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: Ramic
- * Date: 04.05.2019
- * Time: 0:39
+ * Date: 01.05.2019
+ * Time: 18:49
  */
-header("Location: http://cukmatch.com/main.php");
+ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/session'));
+session_start();
+session_destroy();
+echo "<button onclick='matching();'>matching</button>"
+
+?>
+<script>
+    function matching() {
+        location.href="matching.php?option=ALL&ctype=ALL&cname=ALL";
+    }
+</script>
